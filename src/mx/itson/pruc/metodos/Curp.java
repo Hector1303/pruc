@@ -21,7 +21,7 @@ public class Curp {
    /**
    * 
 */
-    public String obtenerCurp(
+    public String sacarCurp(
             String nombres,
             String apellidoP,
             String apellidoM,
@@ -252,7 +252,11 @@ public class Curp {
                 throw new AssertionError();
         }
     }
-    
+    /**
+     *
+     * @param anio
+     * @return
+     */
     static char obtenerCaracterSegunAnio(int anio){
         if(anio >= 2000){
             return 'A';
@@ -260,4 +264,24 @@ public class Curp {
             return '0';
         }
     }
+    
+    static String nombreCompuesto(String nombres) {
+        String[] arrayNombres = nombres.split(" ");
+
+        if (arrayNombres.length == 2) {
+            if (arrayNombres[0].equals("JOSE") || arrayNombres[0].equals("MARIA")) {
+                return arrayNombres[1];
+            } else {
+                return arrayNombres[0];
+            }
+        } else {
+            if(arrayNombres[0].equals("JOSE") || arrayNombres[0].equals("MARIA")){
+                return arrayNombres[arrayNombres.length-1];
+            } else {
+             return arrayNombres[0];
+            }
+        }
+
+    }
+    
 }

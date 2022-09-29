@@ -112,7 +112,7 @@ public class Main extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel9.setText("CURP");
 
-        lblResultado.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblResultado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +125,10 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(112, 112, 112))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,6 +137,9 @@ public class Main extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
@@ -141,11 +148,9 @@ public class Main extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8))
-                                .addGap(0, 23, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbxEstados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,16 +164,11 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(cbxDiaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(txfAnioNacimiento)
                             .addComponent(cbxSexos, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(112, 112, 112))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addGap(6, 6, 6)
+                        .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,9 +209,9 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(cbxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(btnAceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -228,25 +228,38 @@ public class Main extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         
         Curp curp = new Curp();
-        
+
         Sexo sexo = Sexo.MUJER;
-        
-        if(cbxSexos.getSelectedItem().equals("Hombre")){
+        String apellidoP = "x";
+
+        if (cbxSexos.getSelectedItem().equals("Hombre")) {
             sexo = Sexo.HOMBRE;
-        } else if(cbxSexos.getSelectedItem().equals("Mujer")){
+        } else if (cbxSexos.getSelectedItem().equals("Mujer")) {
             sexo = Sexo.MUJER;
         }
 
-        String c = curp.obtenerCurp(txtNombres.getText(),
-                txfApellidoP.getText(),
-                txfApellidoM.getText(),
-                cbxDiaNacimiento.getSelectedItem().toString(),
-                cbxMesNacimiento.getSelectedItem().toString(),
-                Integer.parseInt(txfAnioNacimiento.getText()),
-                sexo,
-                cbxEstados.getSelectedItem().toString());
+        if (txfApellidoM.getText().equals("")) {
+            apellidoP = "x";
+        } else {
+            apellidoP = txfApellidoM.getText();
+        }
 
-        lblResultado.setText(c);
+        try {
+            String curpFinal
+                    = curp.sacarCurp(
+                            txtNombres.getText(),
+                            txfApellidoP.getText(),
+                            apellidoP,
+                            cbxDiaNacimiento.getSelectedItem().toString(),
+                            cbxMesNacimiento.getSelectedItem().toString(),
+                            Integer.parseInt(txfAnioNacimiento.getText()),
+                            sexo,
+                            cbxEstados.getSelectedItem().toString());
+
+            lblResultado.setText("CURP: " + curpFinal);
+        } catch (Exception e) {
+            lblResultado.setText("Todos los campos deben de estar completos.");
+        }
           
 
         
@@ -268,7 +281,7 @@ public class Main extends javax.swing.JFrame {
         char tecla = evt.getKeyChar();
         
         // Este if hace que solo se ingresen letras
-        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+        if (Character.isLetter(tecla) || Character.isISOControl(tecla)) {
             txfApellidoP.setEditable(true);
         } else {
             txfApellidoP.setEditable(false);
@@ -281,7 +294,7 @@ public class Main extends javax.swing.JFrame {
         char tecla = evt.getKeyChar();
 
         // Este if hace que solo se ingresen letras
-        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+        if (Character.isLetter(tecla) || Character.isISOControl(tecla)) {
             txfApellidoM.setEditable(true);
         } else {
             txfApellidoM.setEditable(false);
