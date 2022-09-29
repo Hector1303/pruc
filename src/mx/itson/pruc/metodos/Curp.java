@@ -13,14 +13,14 @@ import mx.itson.pruc.enumeradores.Sexo;
 public class Curp {
     
     /**
-    * Recibe los datos para generar la curp.
-    * param:obtenerPrimerLetraYVocalInterna, primeraLetraSegundoApellido, primerLetraNombrePila, obtenerFecha, obtenerCodigoEstado, primerConsonanteInternaSegundoApellido
-    * return: Los datos de la primera vocal interna, primera letra del segundo apellido, primera letra del primer nombre, fecha de nacimiento, código de estado y la primer consonante interna del segundo apellido
- */
-    
-   /**
-   * 
-*/
+     * Obtiene la información para establecer los dígitos de la CURP.
+     * param:obtenerPrimerLetraYVocalInterna, primeraLetraSegundoApellido,
+     * primerLetraNombrePila, obtenerFecha, obtenerCodigoEstado,
+     * primerConsonanteInternaSegundoApellido return: Los datos de la primera
+     * vocal interna, primera letra del segundo apellido, primera letra del
+     * primer nombre, fecha de nacimiento, código de estado y la primer
+     * consonante interna del segundo apellido
+     */
     public String sacarCurp(
             String nombres,
             String apellidoP,
@@ -35,16 +35,18 @@ public class Curp {
         apellidoP = formato(apellidoP);
         apellidoM = formato(apellidoM);
 
+        String nombreCompuesto = nombresCompuestos(nombres);
+        
         String curp = letraYVocal(apellidoP)
                 + letraApellidoM(apellidoM)
-                + letraNombre(nombres)
-                + obtenerFechaNacimiento(diaNacimiento, mesNacimineto, anioNacimiento)
-                + obtenerSexo(sexo)
-                + obtenerCodigoEstado(estado)
+                + letraNombre(nombreCompuesto)
+                + fechaNacimiento(diaNacimiento, mesNacimineto, anioNacimiento)
+                + sexo(sexo)
+                + claveEstado(estado)
                 + consonanteApellidoP(apellidoP)
-                + obtenerPrimerConsonanteInternaSegundoApellido(apellidoM)
+                + consonanteApellidoM(apellidoM)
                 + primerConsonanteApellido(nombres)
-                + obtenerCaracterSegunAnio(anioNacimiento)
+                + penultimoDigitoAnio(anioNacimiento)
                 + '1'
                 ;
 
@@ -145,21 +147,28 @@ public class Curp {
     static char consonanteApellidoP(String primerApellido) {
         return primerConsonanteApellido(primerApellido);
     }
-/**
-* Obtiene la primer consonante interna del segundo apellido o del apellido materno
-* param: obtenerPrimerConsonanteInternaSegundoApellido, segundoApellido
-* return: la primer letra consonante dentro del segundo apellido o del apellido materno.
- */
-    static char obtenerPrimerConsonanteInternaSegundoApellido(String segundoApellido) {
-        return primerConsonanteApellido(segundoApellido);
+    
+    /**
+     * Obtiene la primer consonante interna del segundo apellido o del apellido
+     * materno param: obtenerPrimerConsonanteInternaSegundoApellido,
+     * segundoApellido return: la primer letra consonante dentro del segundo
+     * apellido o del apellido materno.
+     */
+    static char consonanteApellidoM(String segundoApellido) {
+        if (segundoApellido.equals("X")) {
+            return 'X';
+        } else {
+            return primerConsonanteApellido(segundoApellido);
+        }
     }
+    
 /**
 * Obtiene fecha de nacimiento partiendo del dia, mes, año
 * param: obtenerFecha, dia, mes, anio
 * return: dos dígitos para el día, mes y año correspondientes de los datos ingresados.
     Acá se mencionaba que eran 2 dígitos para el día, para el mes y año, no sé si lo habrás puesto
  */
-    public static String obtenerFechaNacimiento(String dia, String mes, int anio) {
+    public static String fechaNacimiento(String dia, String mes, int anio) {
         String anioString = "" + anio;
         
         return anioString.charAt(2) + "" + anioString.charAt(3) + mes + dia;
@@ -169,7 +178,7 @@ public class Curp {
 * param: obtenerCodigoEstado
 * return: el código hecho en dos cifras para determinar la pertenencia del individuo.
  */
-    public static String obtenerCodigoEstado(String estado) {
+    public static String claveEstado(String estado) {
         switch (estado) {
             case "Aguascalientes":
                 return "AS";
@@ -242,7 +251,7 @@ public class Curp {
         }
     }
     
-    static char obtenerSexo(Sexo sexo){
+    static char sexo(Sexo sexo){
         switch (sexo) {
             case HOMBRE:
                 return 'H';
@@ -257,7 +266,7 @@ public class Curp {
      * @param anio
      * @return
      */
-    static char obtenerCaracterSegunAnio(int anio){
+    static char penultimoDigitoAnio(int anio){
         if(anio >= 2000){
             return 'A';
         } else {
@@ -265,7 +274,7 @@ public class Curp {
         }
     }
     
-    static String nombreCompuesto(String nombres) {
+    static String nombresCompuestos(String nombres) {
         String[] arrayNombres = nombres.split(" ");
 
         if (arrayNombres.length == 2) {
