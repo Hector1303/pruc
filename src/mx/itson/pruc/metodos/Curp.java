@@ -4,6 +4,8 @@
  */
 package mx.itson.pruc.metodos;
 
+import mx.itson.pruc.enumeradores.Sexo;
+
 /**
  *
  * @author chiqu

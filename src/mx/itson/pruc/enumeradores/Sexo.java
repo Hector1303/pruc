@@ -6,8 +6,9 @@ package mx.itson.pruc.enumeradores;
 
 /**
  *
- * @author chiqu
+ * @author hector
  */
-public class Genero {
-    
+public enum Sexo {
+    HOMBRE,
+    MUJER
 }

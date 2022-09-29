@@ -4,9 +4,12 @@
  */
 package mx.itson.pruc.jframe;
 
+import java.awt.event.KeyEvent;
+import mx.itson.pruc.metodos.Curp;
+import mx.itson.pruc.enumeradores.Sexo;
 /**
  *
- * @author chiqu
+ * @author hector
  */
 public class Main extends javax.swing.JFrame {
 
@@ -39,12 +42,12 @@ public class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txfAnioNacimiento = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        cbxSexo = new javax.swing.JComboBox<>();
+        cbxSexos = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxEstados = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         lblResultado = new javax.swing.JLabel();
-        btnGuardar = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,14 +58,30 @@ public class Main extends javax.swing.JFrame {
                 txtNombresActionPerformed(evt);
             }
         });
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombresKeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("Apellido Paterno*:");
+
+        txfApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txfApellidoPKeyPressed(evt);
+            }
+        });
 
         jLabel3.setText("Apellido Materno:");
 
         txfApellidoM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txfApellidoMActionPerformed(evt);
+            }
+        });
+        txfApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txfApellidoMKeyPressed(evt);
             }
         });
 
@@ -76,18 +95,29 @@ public class Main extends javax.swing.JFrame {
 
         jLabel6.setText("Año de nacimiento*:");
 
+        txfAnioNacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txfAnioNacimientoKeyPressed(evt);
+            }
+        });
+
         jLabel7.setText("Sexo*:");
 
-        cbxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
+        cbxSexos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
 
         jLabel8.setText("Estado*:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
+        cbxEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel9.setText("CURP");
 
-        btnGuardar.setText("Obtener");
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +136,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
+                        .addComponent(btnAceptar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +153,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxEstados, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbxMesNacimiento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -133,7 +163,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(txfApellidoM)
                                     .addComponent(cbxDiaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(txfAnioNacimiento)
-                            .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbxSexos, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
@@ -168,13 +198,13 @@ public class Main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxSexos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxEstados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(btnGuardar)
+                .addComponent(btnAceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
@@ -190,6 +220,92 @@ public class Main extends javax.swing.JFrame {
     private void txfApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfApellidoMActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfApellidoMActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        
+        Curp curp = new Curp();
+        
+        Sexo sexo = Sexo.MUJER;
+        
+        if(cbxSexos.getSelectedItem().equals("Hombre")){
+            sexo = Sexo.HOMBRE;
+        } else if(cbxSexos.getSelectedItem().equals("Mujer")){
+            sexo = Sexo.MUJER;
+        }
+
+        String c = curp.obtenerCurp(txtNombres.getText(),
+                txfApellidoP.getText(),
+                txfApellidoM.getText(),
+                cbxDiaNacimiento.getSelectedItem().toString(),
+                cbxMesNacimiento.getSelectedItem().toString(),
+                Integer.parseInt(txfAnioNacimiento.getText()),
+                sexo,
+                cbxEstados.getSelectedItem().toString());
+
+        lblResultado.setText(c);
+          
+
+        
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void txtNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyPressed
+        char tecla = evt.getKeyChar();
+        
+        // Este if hace que solo se ingresen letras
+        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+            txtNombres.setEditable(true);
+        } else {
+            txtNombres.setEditable(false);
+        }
+    }//GEN-LAST:event_txtNombresKeyPressed
+
+    private void txfApellidoPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfApellidoPKeyPressed
+        
+        char tecla = evt.getKeyChar();
+        
+        // Este if hace que solo se ingresen letras
+        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+            txfApellidoP.setEditable(true);
+        } else {
+            txfApellidoP.setEditable(false);
+        }
+        
+    }//GEN-LAST:event_txfApellidoPKeyPressed
+
+    private void txfApellidoMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfApellidoMKeyPressed
+        
+        char tecla = evt.getKeyChar();
+
+        // Este if hace que solo se ingresen letras
+        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+            txfApellidoM.setEditable(true);
+        } else {
+            txfApellidoM.setEditable(false);
+        }
+        
+    }//GEN-LAST:event_txfApellidoMKeyPressed
+
+    private void txfAnioNacimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfAnioNacimientoKeyPressed
+        
+        char tecla = evt.getKeyChar();
+        String anio = txfAnioNacimiento.getText();
+        
+        // Este if hace que solo se puedan ingresar números y nada más 4
+        if (Character.isDigit(tecla)) {
+            if (anio.length() < 4) {
+                txfAnioNacimiento.setEditable(true);
+            } else {
+                txfAnioNacimiento.setEditable(false);
+            }
+        } else {
+            if (evt.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+                txfAnioNacimiento.setEditable(true);
+            } else {
+                txfAnioNacimiento.setEditable(false);
+            }
+        }
+        
+    }//GEN-LAST:event_txfAnioNacimientoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -227,11 +343,11 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JComboBox<String> cbxDiaNacimiento;
+    private javax.swing.JComboBox<String> cbxEstados;
     private javax.swing.JComboBox<String> cbxMesNacimiento;
-    private javax.swing.JComboBox<String> cbxSexo;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbxSexos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
