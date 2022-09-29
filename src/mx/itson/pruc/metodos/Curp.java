@@ -38,13 +38,13 @@ public class Curp {
         String curp = letraYVocal(apellidoP)
                 + letraApellidoM(apellidoM)
                 + letraNombre(nombres)
-                + fechaNacimiento(diaNacimiento, mesNacimineto, anioNacimiento)
-                + sexo(sexo)
-                + claveEstado(estado)
+                + obtenerFechaNacimiento(diaNacimiento, mesNacimineto, anioNacimiento)
+                + obtenerSexo(sexo)
+                + obtenerCodigoEstado(estado)
                 + consonanteApellidoP(apellidoP)
-                + consonanteApellidoM(apellidoM)
+                + obtenerPrimerConsonanteInternaSegundoApellido(apellidoM)
                 + primerConsonanteApellido(nombres)
-                + penultimoDigitoAnio(anioNacimiento)
+                + obtenerCaracterSegunAnio(anioNacimiento)
                 + '1'
                 ;
 
@@ -147,10 +147,10 @@ public class Curp {
     }
 /**
 * Obtiene la primer consonante interna del segundo apellido o del apellido materno
- param: consonanteApellidoM, segundoApellido
- return: la primer letra consonante dentro del segundo apellido o del apellido materno.
+* param: obtenerPrimerConsonanteInternaSegundoApellido, segundoApellido
+* return: la primer letra consonante dentro del segundo apellido o del apellido materno.
  */
-    static char consonanteApellidoM(String segundoApellido) {
+    static char obtenerPrimerConsonanteInternaSegundoApellido(String segundoApellido) {
         return primerConsonanteApellido(segundoApellido);
     }
 /**
@@ -159,7 +159,7 @@ public class Curp {
 * return: dos dígitos para el día, mes y año correspondientes de los datos ingresados.
     Acá se mencionaba que eran 2 dígitos para el día, para el mes y año, no sé si lo habrás puesto
  */
-    public static String fechaNacimiento(String dia, String mes, int anio) {
+    public static String obtenerFechaNacimiento(String dia, String mes, int anio) {
         String anioString = "" + anio;
         
         return anioString.charAt(2) + "" + anioString.charAt(3) + mes + dia;
@@ -169,7 +169,7 @@ public class Curp {
 * param: obtenerCodigoEstado
 * return: el código hecho en dos cifras para determinar la pertenencia del individuo.
  */
-    public static String claveEstado(String estado) {
+    public static String obtenerCodigoEstado(String estado) {
         switch (estado) {
             case "Aguascalientes":
                 return "AS";
@@ -242,7 +242,7 @@ public class Curp {
         }
     }
     
-    static char sexo(Sexo sexo){
+    static char obtenerSexo(Sexo sexo){
         switch (sexo) {
             case HOMBRE:
                 return 'H';
@@ -253,7 +253,7 @@ public class Curp {
         }
     }
     
-    static char penultimoDigitoAnio(int anio){
+    static char obtenerCaracterSegunAnio(int anio){
         if(anio >= 2000){
             return 'A';
         } else {
